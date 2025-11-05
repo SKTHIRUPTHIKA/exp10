@@ -1,0 +1,61 @@
+correct this package swinglogin;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginApp extends JFrame implements ActionListener {
+
+    JLabel lblUser, lblPass;
+    JTextField txtUser;
+    JPasswordField txtPass;
+    JButton btnLogin;
+
+    public LoginApp() {
+        setTitle("Swing Application");
+        setSize(400, 250);
+        setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(220, 225, 235));
+
+        lblUser = new JLabel("Username");
+        lblUser.setBounds(80, 50, 100, 30);
+        add(lblUser);
+
+        lblPass = new JLabel("Password");
+        lblPass.setBounds(80, 90, 100, 30);
+        add(lblPass);
+
+        txtUser = new JTextField();
+        txtUser.setBounds(180, 50, 120, 30);
+        add(txtUser);
+
+        txtPass = new JPasswordField();
+        txtPass.setBounds(180, 90, 120, 30);
+        add(txtPass);
+
+        btnLogin = new JButton("Login");
+        btnLogin.setBounds(150, 140, 100, 30);
+        add(btnLogin);
+
+        btnLogin.addActionListener(this);
+
+        setVisible(true);
+        setLocationRelativeTo(null); 
+
+    public void actionPerformed(ActionEvent e) {
+        String username = txtUser.getText();
+        String password = new String(txtPass.getPassword());
+
+        if (username.equals("Karunya") && password.equals("Karunya")) {
+            JOptionPane.showMessageDialog(this, "Login Successful!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Login Failed!", "Message", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new LoginApp();
+    }
+}
+Explain this too 
