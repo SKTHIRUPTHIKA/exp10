@@ -1,0 +1,89 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class StudentRegistration {
+    public static void main(String[] args) {
+        new RegistrationForm();
+    }
+}
+
+class RegistrationForm extends JFrame implements ActionListener {
+
+    JTextField nameField, rollField;
+    JRadioButton male, female;
+    JCheckBox read, play, music;
+    JComboBox<String> deptBox;
+    JButton submit;
+
+    RegistrationForm() {
+        setTitle("Student Registration");
+        setSize(400, 350);
+        setLayout(new GridLayout(6, 2, 8, 8));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        add(new JLabel("Name:"));
+        nameField = new JTextField();
+        add(nameField);
+
+        add(new JLabel("Roll No:"));
+        rollField = new JTextField();
+        add(rollField);
+
+        add(new JLabel("Gender:"));
+        male = new JRadioButton("Male");
+        female = new JRadioButton("Female");
+        ButtonGroup g = new ButtonGroup();
+        g.add(male);
+        g.add(female);
+        JPanel gp = new JPanel();
+        gp.add(male);
+        gp.add(female);
+        add(gp);
+
+        add(new JLabel("Hobbies:"));
+        read = new JCheckBox("Reading");
+        play = new JCheckBox("Sports");
+        music = new JCheckBox("Music");
+        JPanel hp = new JPanel();
+        hp.add(read);
+        hp.add(play);
+        hp.add(music);
+        add(hp);
+
+        add(new JLabel("Department:"));
+        deptBox = new JComboBox<>(new String[]{"CSE", "ECE", "EEE", "MECH", "CIVIL"});
+        add(deptBox);
+
+        submit = new JButton("Submit");
+        submit.addActionListener(this);
+        add(submit);
+        add(new JLabel()); 
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String name = nameField.getText();
+        String roll = rollField.getText();
+        String gender = male.isSelected() ? "Male" : (female.isSelected() ? "Female" : "Not Selected");
+
+        String hobbies = "";
+        if (read.isSelected()) hobbies += "Reading ";
+        if (play.isSelected()) hobbies += "Sports ";
+        if (music.isSelected()) hobbies += "Music ";
+        if (hobbies.isEmpty()) hobbies = "None";
+
+        String dept = (String) deptBox.getSelectedItem();
+
+        JOptionPane.showMessageDialog(this,
+                "Name: " + name +
+                "\nRoll No: " + roll +
+                "\nGender: " + gender +
+                "\nHobbies: " + hobbies +
+                "\nDepartment: " + dept,
+                "Student Details",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+}
